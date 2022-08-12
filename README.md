@@ -1,2 +1,2 @@
 # PTUDW-AmoraShop
-AmoraShop webapp with NodeJS and Express
+AromaShop webapp using NodeJS and Express framework
