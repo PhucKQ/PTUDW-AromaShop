@@ -11,15 +11,24 @@ const hbs = expressHbs.create({
     defaultLayout: 'layout',
     layoutsDir: __dirname + '/views/layouts',
     partialsDir: __dirname + '/views/partials',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+    }
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 // Define your routes here
-app.get('/', (req, res) => {
-    res.render('index');
-});
+// -> index
+// app.get('/', (req, res) => {     // trước khi có folder routes sử dụng cấu hình này để route,
+//     res.render('index');         // định nghĩa route xong thì thay bằng dòng 23
+// });
+app.use('/', require('./routes/indexRouter'));
 
+// /products -> category
+app.use('/products', require('./routes/productRouter'));
+
+// /products/:id -> single-product
 app.get('/sync', (req, res) => {
     let models = require('./models');
     models.sequelize.sync()
@@ -28,23 +37,23 @@ app.get('/sync', (req, res) => {
     });
 });
 
-app.get('/:page', (req, res) => {
-    let banners = {
-        blog: 'Our Blog',
-        cart: 'Shopping Cart',
-        category: 'Shop Category',
-        checkout: 'Product Checkout',
-        confirmation: 'Order Confirmation',
-        contact: 'Contact Us',
-        login: 'Login / Register',
-        register: 'Register',
-        "single-blog": 'Blog Details',
-        "single-product": 'Shop Single',
-        "tracking-order": 'Order Tracking',
-    };
-    let page = req.params.page;
-    res.render(page, { banner: banners[page] });
-});
+// app.get('/:page', (req, res) => {
+//     let banners = {
+//         blog: 'Our Blog',
+//         cart: 'Shopping Cart',
+//         category: 'Shop Category',
+//         checkout: 'Product Checkout',
+//         confirmation: 'Order Confirmation',
+//         contact: 'Contact Us',
+//         login: 'Login / Register',
+//         register: 'Register',
+//         "single-blog": 'Blog Details',
+//         "single-product": 'Shop Single',
+//         "tracking-order": 'Order Tracking',
+//     };
+//     let page = req.params.page;
+//     res.render(page, { banner: banners[page] });
+// });
 
 
 

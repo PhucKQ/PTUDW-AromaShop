@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.belongsTo(models.Category, {foreignKey: 'categoryId'});
-      Product.belongsTo(models.Brand, {foreignKey: 'brandId'});
-      Product.hasMany(models.Color, {foreignKey: 'productId'});
-      Product.hasMany(models.ProductSpecification, {foreignKey: 'productId'});
-      Product.hasMany(models.Comment, {foreignKey: 'productId'});
-      Product.hasMany(models.Review, {foreignKey: 'productId'});
+      Product.belongsTo(models.Category, {foreignKey: 'categoryId' });
+      Product.belongsTo(models.Brand, { foreignKey: 'brandId' });
+      Product.hasMany(models.ProductColor, {foreignKey: 'productId' });
+      Product.hasMany(models.ProductSpecification, {foreignKey: 'productId' });
+      Product.hasMany(models.Comment, {foreignKey: 'productId' });
+      Product.hasMany(models.Review, {foreignKey: 'productId' });
     }
   }
   Product.init({
@@ -26,7 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     thumbnailPath: DataTypes.TEXT,
     availability: DataTypes.BOOLEAN,
     summary: DataTypes.TEXT,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    overallReview: DataTypes.DOUBLE,
+    reviewCount: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Product',

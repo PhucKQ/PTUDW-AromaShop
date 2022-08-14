@@ -1,23 +1,33 @@
 {
   "development": {
+    "username": "qrwqpoakjnifdt",
+    "password": "fc554d90ac7e40a78223945943ccdeefae9a9fa03d9390bc5f1d08c1f6b8001b",
+    "database": "d16jebgid49kad",
+    "host": "ec2-44-195-100-240.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
+  },
+  "test": {
     "username": "postgres",
     "password": "123456",
     "database": "aromadb",
     "host": "localhost",
     "dialect": "postgres"
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "qrwqpoakjnifdt",
+    "password": "fc554d90ac7e40a78223945943ccdeefae9a9fa03d9390bc5f1d08c1f6b8001b",
+    "database": "d16jebgid49kad",
+    "host": "ec2-44-195-100-240.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
