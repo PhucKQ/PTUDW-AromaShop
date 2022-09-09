@@ -25,6 +25,33 @@ const hbs = expressHbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
+// Body parser
+let bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Use Cookie-parser
+let cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+// Use Session
+let session = require('express-session');
+app.use(session({
+    cookie: { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 },
+    secret: 'S3cret',
+    resave: false,
+    saveUninitialized: false,
+}));
+
+// Use Cart controller
+let Cart = require('./controllers/cartController');
+app.use((req, res, next) => {
+    let cart = new Cart(req.session.cart ? req.session.cart : {});
+    req.session.cart = cart;
+    res.locals.totalQuantity = cart.totalQuantity;
+    next();
+});
+
 // Define your routes here
 // -> index
 // app.get('/', (req, res) => {     // trước khi có folder routes sử dụng cấu hình này để route,
@@ -34,6 +61,7 @@ app.use('/', require('./routes/indexRouter'));
 
 // /products -> category
 app.use('/products', require('./routes/productRouter'));
+app.use('/cart', require('./routes/cartRouter'));
 
 // /products/:id -> single-product
 app.get('/sync', (req, res) => {
@@ -43,26 +71,6 @@ app.get('/sync', (req, res) => {
         res.send('database sync completed');
     });
 });
-
-// app.get('/:page', (req, res) => {
-//     let banners = {
-//         blog: 'Our Blog',
-//         cart: 'Shopping Cart',
-//         category: 'Shop Category',
-//         checkout: 'Product Checkout',
-//         confirmation: 'Order Confirmation',
-//         contact: 'Contact Us',
-//         login: 'Login / Register',
-//         register: 'Register',
-//         "single-blog": 'Blog Details',
-//         "single-product": 'Shop Single',
-//         "tracking-order": 'Order Tracking',
-//     };
-//     let page = req.params.page;
-//     res.render(page, { banner: banners[page] });
-// });
-
-
 
 // Set Server Port & Start Server
 app.set('port', process.env.PORT || 5000);
