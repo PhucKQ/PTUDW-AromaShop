@@ -62,6 +62,7 @@ app.use('/', require('./routes/indexRouter'));
 // /products -> category
 app.use('/products', require('./routes/productRouter'));
 app.use('/cart', require('./routes/cartRouter'));
+app.use('/comments', require('./routes/commentRouter'));
 
 // /products/:id -> single-product
 app.get('/sync', (req, res) => {
