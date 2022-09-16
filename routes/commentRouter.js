@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const userController = require('../controllers/userController');
 
-router.post('/', function (req, res, next) {
+router.post('/', userController.isLoggedIn, function (req, res, next) {
     let controller = require('../controllers/commentController');
     let comment = {
-        userId: 1,
+        userId: req.session.user.id,
         productId: req.body.productId,
         message: req.body.message,
     };
