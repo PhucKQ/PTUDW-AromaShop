@@ -62,6 +62,14 @@ app.use('/comments', require('./routes/commentRouter'));
 app.use('/reviews', require('./routes/reviewRouter'));
 app.use('/users', require('./routes/userRouter'));
 
+app.get('/:page', (req, res) => {
+    let banners = {
+        contact: 'Contact Us',
+    };
+    let page = req.params.page;
+    res.render(page, { banner: banners[page] });
+});
+
 // /products/:id -> single-product
 app.get('/sync', (req, res) => {
     let models = require('./models');
