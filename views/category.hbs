@@ -300,9 +300,10 @@
     // thiết lập trạng thái và đường dẫn href cho các link của pagination
     $('#pagination li').addClass('page-item');
     $('#pagination li a').addClass('page-link');
+    
+    let page = $(item).attr('href').split('=')[1];
     $('#pagination li a').each((index, item) => {
       // href = /products?page=2 -> return 2
-      let page = $(item).attr('href').split('=')[1];
       let savePage = urlParams.get('page');
       urlParams.set('page', page);
       let href = '/products?' + urlParams.toString();
