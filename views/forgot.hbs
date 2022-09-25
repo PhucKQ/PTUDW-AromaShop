@@ -34,7 +34,8 @@
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="username" name="username"
 									placeholder="Email Address" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Email Address'">
+									onblur="this.placeholder = 'Email Address'" required
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="button button-register w-100">Submit</button>

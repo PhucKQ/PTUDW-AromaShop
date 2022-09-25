@@ -7,6 +7,7 @@ specifiers:
   express-handlebars: ^6.0.6
   express-handlebars-paginate: ^1.0.3
   express-session: ^1.17.3
+  express-validator: ^6.14.2
   jsonwebtoken: ^8.5.1
   node-mailjet: ^5.1.1
   nodemon: ^2.0.19
@@ -22,6 +23,7 @@ dependencies:
   express-handlebars: 6.0.6
   express-handlebars-paginate: 1.0.3
   express-session: 1.17.3
+  express-validator: 6.14.2
   jsonwebtoken: 8.5.1
   node-mailjet: 5.1.1
   nodemon: 2.0.19
@@ -464,6 +466,14 @@ packages:
       uid-safe: 2.1.5
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /express-validator/6.14.2:
+    resolution: {integrity: sha512-8XfAUrQ6Y7dIIuy9KcUPCfG/uCbvREctrxf5EeeME+ulanJ4iiW71lWmm9r4YcKKYOCBMan0WpVg7FtHu4Z4Wg==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      lodash: 4.17.21
+      validator: 13.7.0
     dev: false
 
   /express/4.18.1:
