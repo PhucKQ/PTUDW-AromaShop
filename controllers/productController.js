@@ -20,6 +20,27 @@ controller.getTrendingProducts = () => {
     });
 };
 
+controller.getTopProducts = () => {
+    return new Promise((resolve, reject) => {
+        Product
+            .findAll({
+                limit: 12,
+                order: [
+                    ['overallReview', 'DESC']
+                ],
+                include: [{ model: models.Category}],
+            })
+        .then(data => {
+            let topProducts = [];
+            while (data.length) {
+                topProducts.push(data.splice(0,3));
+            }
+            resolve(topProducts);
+        })
+        .catch(error => reject(new Error(error)));
+    });
+};
+
 controller.getAll = (query) => {
     return new Promise((resolve, reject) => {
         let options = {

@@ -65,12 +65,17 @@ app.use('/users', require('./routes/userRouter'));
 app.get('/:page', (req, res) => {
     let banners = {
         contact: 'Contact Us',
+        "tracking-order": 'Tracking your order',
+        blog: 'Our Blog',
+        "single-blog": 'Your blog',
     };
     let page = req.params.page;
-    res.render(page, { banner: banners[page] });
+    res.render(page, { 
+        banner: banners[page],
+        active: { [page]: true },
+    });
 });
 
-// /products/:id -> single-product
 app.get('/sync', (req, res) => {
     let models = require('./models');
     models.sequelize.sync()

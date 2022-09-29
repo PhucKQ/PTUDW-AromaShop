@@ -55,7 +55,14 @@ router.get('/', function (req, res, next) {
                 limit: parseInt(req.query.limit),
                 totalRows: data.count
             };
-            res.render('category');
+            let productController = require('../controllers/productController');
+            return productController.getTopProducts()
+        })
+        .then(topProducts => {
+            res.locals.topProducts = topProducts;
+            res.render('category', { 
+                active: {product: true}
+            });
         })
         .catch(error => next(error));
 });

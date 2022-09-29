@@ -13,7 +13,9 @@ function getErrorMessage(errors) {
 
 router.get('/login', (req, res) => {
     req.session.returnURL = req.query.returnURL;
-    res.render('login');
+    res.render('login', { 
+        active: {login: true}
+    });
 });
 
 router.post('/login', 
@@ -27,7 +29,6 @@ router.post('/login',
                 message: getErrorMessage(errors.array()),
                 type: 'alert-danger',
             });
-            //return res.status(400).json({ errors: errors.array() });
         }
 
         let email = req.body.username;

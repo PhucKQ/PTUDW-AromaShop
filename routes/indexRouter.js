@@ -12,7 +12,9 @@ router.get('/', function (req, res, next) {
     })
     .then(data => {
         res.locals.trendingProducts = data;
-        res.render('index');
+        res.render('index', { 
+            active: {home: true}
+        });
     })
     .catch(error => next(error));
 });
